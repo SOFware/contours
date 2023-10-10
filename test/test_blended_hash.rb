@@ -110,8 +110,8 @@ module Contours
 
     describe "#to_hash" do
       it "returns a hash representation of simple objects" do
-        blended = TestBlend.new({simple: "text", complex: { object: StructuredString.init("text").first("begin")}})
-        expect(**blended).must_equal({simple: "text", complex: { object: "begin text" }})
+        blended = TestBlend.new({simple: "text", complex: {object: StructuredString.init("text").first("begin")}})
+        expect(**blended).must_equal({simple: "text", complex: {object: "begin text"}})
       end
     end
 
