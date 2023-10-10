@@ -20,10 +20,6 @@ Gem::Specification.new do |spec|
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/SOFware/contours.git"
-  # spec.metadata["changelog_uri"] = "TODO: Put your gem's CHANGELOG.md URL here."
-  # Specify which files should be added to the gem when it is released.
-  spec.files = Dir["lib/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
-  spec.bindir = "exe"
-  spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
+  spec.files = Dir["lib/**/*", "LICENSE", "Rakefile", "README.md"]
   spec.require_paths = ["lib"]
 end
