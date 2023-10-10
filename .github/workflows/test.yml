@@ -16,8 +16,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  rspec:
-    name: Rspec
+  test:
+    name: Test
     runs-on: ubuntu-latest
     strategy:
       matrix:
