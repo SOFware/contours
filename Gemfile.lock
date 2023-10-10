@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    contours (0.1.0)
+    contours (0.1.1)
 
 GEM
   remote: https://rubygems.org/
