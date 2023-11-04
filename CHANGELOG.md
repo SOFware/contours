@@ -4,7 +4,6 @@
 
 ### Added
 
-<% debugger if attribute == :remotely_observed %>
 -  Added `CHANGELOG.md` file
 - `as_json` and `to_json` methods to StructuredString
 
