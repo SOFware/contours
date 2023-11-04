@@ -20,6 +20,7 @@ Gem::Specification.new do |spec|
 
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = "https://github.com/SOFware/contours.git"
+  spec.metadata["changelog_uri"] = "https://github.com/SOFware/contours/blob/main/CHANGELOG.md"
   spec.files = Dir["lib/**/*", "LICENSE", "Rakefile", "README.md"]
   spec.require_paths = ["lib"]
 end
