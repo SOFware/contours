@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## [UNRELEASED]
+
 ## [0.1.1] - 2023-11-04
 
 ### Added
