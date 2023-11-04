@@ -45,6 +45,36 @@ module Contours
       end
     end
 
+    describe "as_json" do
+      it "returns the string" do
+        structured = StructuredString.new("base-string")
+        structured.first("first")
+        structured.last("last")
+        structured << "other"
+        structured.first("more-first")
+        structured.last("more-last")
+        structured << "middle"
+        expect(structured.as_json(:ignored)).must_equal(
+          "first more-first base-string other middle last more-last"
+        )
+      end
+    end
+
+    describe "to_json" do
+      it "returns the string" do
+        structured = StructuredString.new("base-string")
+        structured.first("first")
+        structured.last("last")
+        structured << "other"
+        structured.first("more-first")
+        structured.last("more-last")
+        structured << "middle"
+        expect(structured.to_json(:ignored)).must_equal(
+          "\"first more-first base-string other middle last more-last\""
+        )
+      end
+    end
+
     describe "#read" do
       it "returns the value of a named portion of the string" do
         structured = StructuredString.new("base-string")

@@ -120,6 +120,14 @@ module Contours
     alias_method :to_str, :to_s
     alias_method :inspect, :to_s
 
+    def as_json(*)
+      to_s
+    end
+
+    def to_json(*)
+      to_s.to_json
+    end
+
     def ==(other)
       to_s == other.to_s
     end
