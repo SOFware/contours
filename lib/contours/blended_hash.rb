@@ -46,9 +46,9 @@ module Contours
     # then 'merge' with the extras value.
     def self.blend(key, with: nil, &block)
       if block
-        define_method("blend_#{key}", &block)
+        define_method(:"blend_#{key}", &block)
       else
-        define_method("blend_#{key}") do |original, extras|
+        define_method(:"blend_#{key}") do |original, extras|
           with.init(original).merge(extras)
         end
       end
@@ -61,8 +61,8 @@ module Contours
       return self if overrides.nil? || overrides.empty?
       self.class.new(overrides.each_with_object(to_hash.dup) do |(key, value), hash|
         hash[key] = if blended_keys.include?(key)
-          if respond_to?("blend_#{key}")
-            send("blend_#{key}", hash[key], value)
+          if respond_to?(:"blend_#{key}")
+            send(:"blend_#{key}", hash[key], value)
           else
             blend(hash[key], value)
           end
