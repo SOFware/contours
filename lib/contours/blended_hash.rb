@@ -114,26 +114,29 @@ module Contours
 
     # Ensure that the return value of these methods is a BlendedHash
     def [](...)
-      if super.is_a?(Hash)
-        self.class.init(super)
+      super_result = super
+      if super_result.is_a?(Hash)
+        self.class.init(super_result)
       else
-        super
+        super_result
       end
     end
 
     def fetch(...)
-      if super.is_a?(Hash)
-        self.class.init(super)
+      super_result = super
+      if super_result.is_a?(Hash)
+        self.class.init(super_result)
       else
-        super
+        super_result
       end
     end
 
     def dig(...)
-      if super.is_a?(Hash)
-        self.class.init(super)
+      super_result = super
+      if super_result.is_a?(Hash)
+        self.class.init(super_result)
       else
-        super
+        super_result
       end
     end
 
