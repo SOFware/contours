@@ -28,6 +28,16 @@ module Contours
 
     # Initialize with base string that is used to build the StructuredString
     # Other values will be added to the string in the order they are added.
+    #
+    # @param base [String] the initial string
+    # @param separator [String] the separator used to join the parts of the string
+    #
+    # @example
+    #   config = StructuredString.new("input")
+    #   config << "my-special-class"
+    #   config << "input-error"
+    #   config.to_s #=> "input my-special-class input-error"
+    #
     def initialize(base = "", separator: " ")
       @base = [base]
       @separator = separator
@@ -37,6 +47,14 @@ module Contours
     end
 
     # Add a value to the beginning of the string
+    #
+    # @param value [String] the value to add
+    #
+    # @example
+    #   config = StructuredString.new("input")
+    #   config.first("my-special-class")
+    #   config.to_s #=> "my-special-class input"
+    #
     def first(value)
       @first << value.to_s
       __setobj__ to_s
@@ -44,6 +62,14 @@ module Contours
     end
 
     # Add a value to the end of the string
+    #
+    # @param value [String] the value to add
+    #
+    # @example
+    #   config = StructuredString.new("input")
+    #   config.last("input-error")
+    #   config.to_s #=> "input input-error"
+    #
     def last(value)
       @last << value.to_s
       __setobj__ to_s
@@ -51,6 +77,14 @@ module Contours
     end
 
     # Add a value to the middle of the string
+    #
+    # @param value [String] the value to add
+    #
+    # @example
+    #   config = StructuredString.new("input")
+    #   config << "my-special-class"
+    #   config.to_s #=> "input my-special-class"
+    #
     def <<(other)
       @other << other.to_s
       __setobj__ to_s
@@ -58,6 +92,21 @@ module Contours
     end
 
     # Read a particular portion of the structured string or raise an error
+    #
+    # @param key [Symbol] the portion of the string to read
+    #
+    # @return [Array] the portion of the string
+    #
+    # @example
+    #   config = StructuredString.new("input")
+    #   config << "my-special-class"
+    #   config.first("first-class")
+    #   config.last("last-class")
+    #   config.read(:base) #=> ["input"]
+    #   config.read(:first) #=> ["first-class"]
+    #   config.read(:last) #=> ["last-class"]
+    #   config.read(:other) #=> ["my-special-class"]
+    #
     def read(key)
       case key
       when :first
@@ -109,6 +158,17 @@ module Contours
     end
 
     # Return the string representation of the StructuredString
+    #
+    # @return [String] the string
+    #
+    # @example
+    #   config = StructuredString.new("input")
+    #   config << "my-special-class"
+    #   config.last("last-class")
+    #   config.first("first-class")
+    #   config << "input-error"
+    #   config.to_s #=> "first-class input my-special-class input-error last-class"
+    #
     def to_s
       [@first, @base, @other, @last]
         .flatten

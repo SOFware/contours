@@ -44,6 +44,29 @@ module Contours
     # Otherwise, the default implementation will be used where the value of the
     # with argument is expected to receive 'init' with the original value and
     # then 'merge' with the extras value.
+    #
+    # @param key [Symbol] the key that should be blended
+    # @param with [BlendedHash] the class that should be used to blend the value
+    # @param block [Proc] the implementation of the blend method
+    #
+    # @example
+    #   class CssConfig < BlendedHash
+    #     @blended_keys = %i[class]
+    #     blend :class do |original, extras|
+    #       [original, extras].flatten.compact.uniq.join(" ")
+    #     end
+    #   end
+    #
+    #   CssConfig.new({class: "foo"}).merge({class: "bar"})
+    #
+    # @example
+    #   class CssConfig < BlendedHash
+    #     @blended_keys = %i[class]
+    #     blend :class, with: CssConfig
+    #   end
+    #
+    #   CssConfig.new({class: "foo"}).merge({class: "bar"})
+    #
     def self.blend(key, with: nil, &block)
       if block
         define_method(:"blend_#{key}", &block)
@@ -57,6 +80,22 @@ module Contours
     # Recursively check for keys that are specified as blended and apply
     # the blend method to them or execute the blend_#{key} method if it exists
     # to set the new value.
+    #
+    # @param overrides [Hash] the hash to merge with
+    #
+    # @return [BlendedHash] the new hash
+    #
+    # @example
+    #   class CssConfig < BlendedHash
+    #     @blended_keys = %i[class]
+    #     blend :class do |original, extras|
+    #       [original, extras].flatten.compact.uniq.join(" ")
+    #     end
+    #   end
+    #
+    #   config = CssConfig.new({class: "foo"}).merge({class: "bar"})
+    #   config[:class] # => "foo bar"
+    #
     def merge(overrides)
       return self if overrides.nil? || overrides.empty?
       self.class.new(overrides.each_with_object(to_hash.dup) do |(key, value), hash|
@@ -110,7 +149,6 @@ module Contours
     # with a custom blend_#{key} method to customize the blending behavior for a
     # specific key.
     #
-
     def blend(original, extra)
       case original
       when BlendedHash, Hash
