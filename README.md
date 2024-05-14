@@ -44,7 +44,7 @@ You can specify a custom way to blend the values for the `@blended_keys`
 class Configuration < Contours::BlendedHash
   @blended_keys = %i[class data]
 
-  blend(:class, with: StructuredString)
+  blend(:class, with: Contours::StructuredString)
 
   blend :data do |existing, new_value|
     existing.sum(new_value.sum)
