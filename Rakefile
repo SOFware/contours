@@ -11,3 +11,10 @@ Rake::TestTask.new(:test) do |t|
 end
 
 task default: :test
+
+require "reissue/gem"
+
+Reissue::Task.create do |t|
+  t.version_file = "lib/contours/version.rb"
+  t.version_limit = 3
+end

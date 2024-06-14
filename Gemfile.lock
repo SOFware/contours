@@ -31,6 +31,8 @@ GEM
     rdoc (6.6.3.1)
       psych (>= 4.0.0)
     regexp_parser (2.9.2)
+    reissue (0.1.7)
+      rake
     reline (0.5.7)
       io-console (~> 0.5)
     rexml (3.3.0)
@@ -83,6 +85,7 @@ DEPENDENCIES
   debug
   minitest
   rake
+  reissue
   simplecov
   standard
   yard
