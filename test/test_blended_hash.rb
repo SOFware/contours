@@ -113,6 +113,20 @@ module Contours
         blended = TestBlend.new({simple: "text", complex: {object: StructuredString.init("text").first("begin")}})
         expect(**blended).must_equal({simple: "text", complex: {object: "begin text"}})
       end
+
+      it "recursively converts StructuredString values to String when using **" do
+        structured = StructuredString.init("text").first("begin")
+        blended = TestBlend.new({
+          simple: "text",
+          complex: {object: structured}
+        })
+
+        result = {**blended}
+        expect(result[:simple]).must_equal("text")
+        expect(result[:complex][:object]).must_equal("begin text")
+        expect(result[:complex][:object]).must_be_kind_of(String)
+        expect(result[:complex][:object]).wont_be_kind_of(Contours::StructuredString)
+      end
     end
 
     describe "blending keys" do

@@ -27,8 +27,6 @@ module Contours
   #
   # See the source of this #{name} class for more details.
   class BlendedHash < DelegateClass(Hash)
-    alias_method :to_hash, :__getobj__
-
     # Ensure that the initial hash is a BlendedHash
     def self.init(initial_hash)
       if initial_hash.is_a?(BlendedHash)
@@ -160,6 +158,25 @@ module Contours
         [original, extra].flatten.compact.uniq
       else
         extra
+      end
+    end
+
+    def to_hash
+      deep_stringify_structured_strings(__getobj__)
+    end
+
+    private
+
+    def deep_stringify_structured_strings(obj)
+      case obj
+      when Hash
+        obj.transform_values { |v| deep_stringify_structured_strings(v) }
+      when Array
+        obj.map { |v| deep_stringify_structured_strings(v) }
+      when StructuredString
+        obj.to_s
+      else
+        obj
       end
     end
   end
