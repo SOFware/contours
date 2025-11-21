@@ -64,6 +64,8 @@ To install this gem onto your local machine, run `bundle exec rake install`.
 
 This project is managed with [Reissue](https://github.com/SOFware/reissue).
 
+Add git trailers for changelog entries according to the [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format.
+
 To release a new version, make your changes and be sure to update the CHANGELOG.md.
 
 To release a new version:
