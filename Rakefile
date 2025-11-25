@@ -17,4 +17,5 @@ require "reissue/gem"
 Reissue::Task.create do |t|
   t.version_file = "lib/contours/version.rb"
   t.version_limit = 3
+  t.fragment = :git
 end
