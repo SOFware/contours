@@ -62,16 +62,7 @@ After checking out the repo, run `bin/setup` to install dependencies. Then, run 
 
 To install this gem onto your local machine, run `bundle exec rake install`.
 
-This project is managed with [Reissue](https://github.com/SOFware/reissue).
-
-Add git trailers for changelog entries according to the [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) format.
-
-To release a new version, make your changes and be sure to update the CHANGELOG.md.
-
-To release a new version:
-
-1. `bundle exec rake build:checksum`
-2. `bundle exec rake release`
+This project is managed with [Reissue](https://github.com/SOFware/reissue). Releases are automated via the [shared release workflow](https://github.com/SOFware/reissue/blob/main/.github/workflows/SHARED_WORKFLOW_README.md). Trigger a release by running the "Release gem to RubyGems.org" workflow from the Actions tab.
 
 ## Contributing
 
